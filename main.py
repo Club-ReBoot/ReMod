@@ -73,7 +73,7 @@ async def restart(ctx):
     
 @bot.command()
 async def ping(ctx):
-    await ctx.send(f'My ping is {bot.latency}!')    
+    await ctx.send(f'My ping is {bot.latency*1000}ms !')    
 
 bot.run(TOKEN)
 
