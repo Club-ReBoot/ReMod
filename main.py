@@ -72,7 +72,9 @@ async def restart(ctx):
     else:
         await ctx.reply("Sorry you don't have permission to do that")
     
-    
+@bot.command()
+async def ping(ctx):
+    await ctx.send(f'My ping is {bot.latency}!')    
 
 bot.run(TOKEN)
 
