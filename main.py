@@ -3,6 +3,9 @@ from discord.ext import commands
 import os
 import asyncio
 
+import subprocess
+subprocess.run(["git", "pull"], check=True, stdout=subprocess.PIPE).stdout
+
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -32,5 +35,5 @@ async def mute(ctx, user: discord.Member, duration=600000, *, unit=None):
     await user.add_roles(roleobject)
 
 bot.run(TOKEN)
-print("bot started")
+
 
