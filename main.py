@@ -27,12 +27,20 @@ async def on_ready():
 
 
 @bot.command()
-async def mute(ctx, user: discord.Member, duration=600000, *, unit=None):
+async def mute(ctx, user: discord.Member):
     roleobject = discord.utils.get(
         ctx.message.guild.roles,
         id=865254696259551233)
-    await ctx.send(f":white_check_mark: Muted {user} for {duration}{unit}")
+    await ctx.send(f":white_check_mark: Muted {user}")
     await user.add_roles(roleobject)
+
+@bot.command()
+async def unmute(ctx, user: discord.Member):
+    roleobject = discord.utils.get(
+        ctx.message.guild.roles,
+        id=865254696259551233)
+    await ctx.send(f":white_check_mark: Unmuted {user}")
+    await user.remove_roles(roleobject)
 
 bot.run(TOKEN)
 
