@@ -12,6 +12,7 @@ except:
     TOKEN=config.TOKEN
 
 
+#test
 
 bot = commands.Bot(command_prefix='>', description="ReMod Bot")
 
