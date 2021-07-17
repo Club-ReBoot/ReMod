@@ -17,6 +17,7 @@ except:
 
 #test2
 
+
 bot = commands.Bot(command_prefix='>', description="ReMod Bot")
 
 
@@ -58,6 +59,19 @@ async def gitpull(ctx):
         await ctx.reply("Executing `git pull`")
     else:
         await ctx.reply("Sorry you don't have permission to do that")
+
+
+@bot.command()
+async def restart(ctx):
+    if ctx.message.author.id in [744224056966119565,686483505252925533]:
+        os.system("python main.py")
+        await ctx.reply("Restarting...`")
+        print("Restarting...")
+        os.system("python main.py")
+        exit()
+    else:
+        await ctx.reply("Sorry you don't have permission to do that")
+    
     
 
 bot.run(TOKEN)
