@@ -19,6 +19,7 @@ bot = commands.Bot(command_prefix='>', description="ReMod Bot")
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game(name="Moderating ReBoot server"))
+    print("Logged in & ready to use")
 
 
 @bot.command()
