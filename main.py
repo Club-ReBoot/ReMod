@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from pretty_help import PrettyHelp
 import os
 import asyncio
 
@@ -18,7 +19,8 @@ except BaseException:
 # test2
 
 
-bot = commands.Bot(command_prefix='>', description="ReMod Bot")
+bot = commands.Bot(command_prefix='>', description="ReMod Bot", help_command=PrettyHelp())
+
 
 
 @bot.event
@@ -27,60 +29,13 @@ async def on_ready():
     print("Logged in & ready to use")
 
 
-@bot.command()
-async def mute(ctx, user: discord.Member):
-    role = discord.utils.find(
-        lambda r: r.name == 'mods',
-        ctx.message.guild.roles)
-    if role in ctx.message.author.roles:
-        roleobject = discord.utils.get(
-            ctx.message.guild.roles,
-            id=865254696259551233)
-        await user.add_roles(roleobject)
-        await ctx.send(f":white_check_mark: Muted {user}")
-    else:
-        await ctx.reply("You don't have permission to do that")
 
 
-@bot.command()
-async def unmute(ctx, user: discord.Member):
-    role = discord.utils.find(
-        lambda r: r.name == 'mods',
-        ctx.message.guild.roles)
-    if role in ctx.message.author.roles:
-        roleobject = discord.utils.get(
-            ctx.message.guild.roles,
-            id=865254696259551233)
-        await user.remove_roles(roleobject)
-        await ctx.send(f":white_check_mark: Unmuted {user}")
-
-    else:
-        await ctx.reply("You don't have permission to do that")
 
 
-@bot.command()
-async def gitpull(ctx):
-    if ctx.message.author.id in [744224056966119565, 686483505252925533]:
-        subprocess.run(["git", "pull"], check=True,
-                       stdout=subprocess.PIPE).stdout
-        await ctx.reply("Executing `git pull`")
-    else:
-        await ctx.reply("Sorry you don't have permission to do that")
 
 
-@bot.command()
-async def restart(ctx):
-    if ctx.message.author.id in [744224056966119565, 686483505252925533]:
-        await ctx.reply("Restarting...`")
-        print("Restarting...")
-        os.system("python main.py")
-        exit()
-    else:
-        await ctx.reply("Sorry you don't have permission to do that")
-
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send(f'My ping is {bot.latency*1000}ms !')
-
+bot.load_extension("cogs.general")
+bot.load_extension("cogs.moderation")
+bot.load_extension("cogs.admin")
 bot.run(TOKEN)
