@@ -29,7 +29,7 @@ async def on_ready():
 
 @bot.command()
 async def mute(ctx, user: discord.Member):
-    role = discord.utils.find(lambda r: r.name == 'mods',ctx.message.server.roles)
+    role = discord.utils.find(lambda r: r.name == 'mods',ctx.message.guild.roles)
     if ctx.message.author.has_role(role):
         roleobject = discord.utils.get(
             ctx.message.guild.roles,
@@ -41,7 +41,7 @@ async def mute(ctx, user: discord.Member):
 
 @bot.command()
 async def unmute(ctx, user: discord.Member):
-    role = discord.utils.find(lambda r: r.name == 'mods',ctx.message.server.roles)
+    role = discord.utils.find(lambda r: r.name == 'mods',ctx.message.guild.roles)
     if ctx.message.author.has_role(role):
         roleobject = discord.utils.get(
             ctx.message.guild.roles,
