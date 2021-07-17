@@ -28,19 +28,37 @@ async def on_ready():
 
 @bot.command()
 async def mute(ctx, user: discord.Member):
-    roleobject = discord.utils.get(
-        ctx.message.guild.roles,
-        id=865254696259551233)
-    await ctx.send(f":white_check_mark: Muted {user}")
-    await user.add_roles(roleobject)
+    role = discord.utils.find(lambda r: r.name == 'mods',ctx.message.server.roles)
+    if ctx.message.author.has_role(role):
+        roleobject = discord.utils.get(
+            ctx.message.guild.roles,
+            id=865254696259551233)
+        await user.add_roles(roleobject)
+        await ctx.send(f":white_check_mark: Muted {user}")
+    else:
+        await ctx.reply("You don't have permission to do that")
 
 @bot.command()
 async def unmute(ctx, user: discord.Member):
-    roleobject = discord.utils.get(
-        ctx.message.guild.roles,
-        id=865254696259551233)
-    await ctx.send(f":white_check_mark: Unmuted {user}")
-    await user.remove_roles(roleobject)
+    role = discord.utils.find(lambda r: r.name == 'mods',ctx.message.server.roles)
+    if ctx.message.author.has_role(role):
+        roleobject = discord.utils.get(
+            ctx.message.guild.roles,
+            id=865254696259551233)
+        await user.remove_roles(roleobject)
+        await ctx.send(f":white_check_mark: Unmuted {user}")
+        
+    else:
+        await ctx.reply("You don't have permission to do that")
+
+@bot.command()
+async def gitpull(ctx):
+    if ctx.message.author.id in [744224056966119565,686483505252925533]:
+        subprocess.run(["git", "pull"], check=True, stdout=subprocess.PIPE).stdout
+        await ctx.reply("Executing `git pull`")
+    else:
+        await ctx.reply("Sorry you don't have permission to do that")
+    
 
 bot.run(TOKEN)
 
