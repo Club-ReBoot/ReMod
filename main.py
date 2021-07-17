@@ -64,7 +64,6 @@ async def gitpull(ctx):
 @bot.command()
 async def restart(ctx):
     if ctx.message.author.id in [744224056966119565,686483505252925533]:
-        os.system("python main.py")
         await ctx.reply("Restarting...`")
         print("Restarting...")
         os.system("python main.py")
