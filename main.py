@@ -2,9 +2,16 @@ import discord
 from discord.ext import commands
 import os
 import asyncio
-from dotenv import load_dotenv
-load_dotenv()
-TOKEN = os.getenv('TOKEN')
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    TOKEN = os.getenv('TOKEN')
+except:
+    import config
+    TOKEN=config.TOKEN
+
+
 
 bot = commands.Bot(command_prefix='>', description="ReMod Bot")
 
@@ -24,3 +31,4 @@ async def mute(ctx, user: discord.Member, duration=600000, *, unit=None):
 
 bot.run(TOKEN)
 print("bot started")
+
