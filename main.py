@@ -19,20 +19,16 @@ except BaseException:
 # test2
 
 
-bot = commands.Bot(command_prefix='>', description="ReMod Bot", help_command=PrettyHelp())
-
+bot = commands.Bot(
+    command_prefix='>',
+    description="ReMod Bot",
+    help_command=PrettyHelp())
 
 
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game(name="Moderating ReBoot server"))
     print("Logged in & ready to use")
-
-
-
-
-
-
 
 
 bot.load_extension("cogs.general")
