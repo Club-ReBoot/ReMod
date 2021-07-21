@@ -11,9 +11,10 @@ try:
     from dotenv import load_dotenv
     load_dotenv()
     TOKEN = os.getenv('TOKEN')
-except BaseException:
+except:
     import config
     TOKEN = config.TOKEN
+
 
 
 # test2
@@ -34,4 +35,5 @@ async def on_ready():
 bot.load_extension("cogs.general")
 bot.load_extension("cogs.moderation")
 bot.load_extension("cogs.admin")
+bot.load_extension("cogs.entertainment")
 bot.run(TOKEN)

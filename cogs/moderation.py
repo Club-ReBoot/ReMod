@@ -6,7 +6,7 @@ class general(commands.Cog, name='Moderation',description="Some Moderation comma
         self.bot = bot
   
     @commands.command(pass_context=True, aliases=["clear","purge"],brief='Purge message in a channel', description='This command will purge/clear message. This command can only be run by mods')
-    async def clean(ctx, lim=10):
+    async def clean(self,ctx, lim=10):
         role = discord.utils.find(
             lambda r: r.name == 'mods',
             ctx.message.guild.roles)
@@ -16,8 +16,8 @@ class general(commands.Cog, name='Moderation',description="Some Moderation comma
         else:
             await ctx.reply("You don't have permission to do that")
 
-    @commands.command(brief='Unute a member', description='This command will unmute a member. This command can only be run by mods')
-    async def unmute(ctx, user: discord.Member):
+    @commands.command(pass_context=True,brief='Unute a member', description='This command will unmute a member. This command can only be run by mods')
+    async def unmute(self,ctx, user: discord.Member):
         role = discord.utils.find(
             lambda r: r.name == 'mods',
             ctx.message.guild.roles)
@@ -31,8 +31,8 @@ class general(commands.Cog, name='Moderation',description="Some Moderation comma
         else:
             await ctx.reply("You don't have permission to do that")
 
-    @commands.command(brief='Mute a member', description='This command will mute a member. This command can only be run by mods')
-    async def mute(ctx, user: discord.Member):
+    @commands.command(pass_context=True,brief='Mute a member', description='This command will mute a member. This command can only be run by mods')
+    async def mute(self,ctx, user: discord.Member):
         role = discord.utils.find(
             lambda r: r.name == 'mods',
             ctx.message.guild.roles)
