@@ -20,7 +20,7 @@ class entertainment(commands.Cog, name='Entertainment',description="Having Fun i
 
 
 
-    @commands.command(pass_context=True,aliases=['youtube','youtubetogether'])
+    @commands.command(pass_context=True,aliases=['youtube','youtubetogether'],brief='Youtube together in VC', description='This commands enables Youtube Together in VC.')
     #@bot.command()
     async def yt(self,ctx):
             try:
@@ -52,7 +52,7 @@ class entertainment(commands.Cog, name='Entertainment',description="Having Fun i
             except Exception as e:
                     await ctx.send("There is some error in starting Youtube Togther or I don't have permission to create invite in that channel")
 
-    @commands.command(pass_context=True,aliases=['chessinthepark','discordchess'])
+    @commands.command(pass_context=True,aliases=['chessinthepark','discordchess'],brief='Chess in VC', description='This commands enables Chess in VC.')
     #@bot.command()
     async def chess(self,ctx):
             try:
