@@ -11,10 +11,9 @@ try:
     from dotenv import load_dotenv
     load_dotenv()
     TOKEN = os.getenv('TOKEN')
-except:
+except BaseException:
     import config
     TOKEN = config.TOKEN
-
 
 
 # test2
